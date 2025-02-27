@@ -33,18 +33,12 @@ async fn main() -> Result {
     for installation in installations {
         let level = vigicrues::level(&installation.station).await?;
 
-        let mesures = level
-            .serie
-            .mesures
-            .iter()
-            .map(|l| {
-                mesure::Entity {
-                    time: l.time,
-                    installation_id: installation.id,
-                    level: Some(l.mesure),
-                    flow: None,
-                }
-            });
+        let mesures = level.serie.mesures.iter().map(|l| mesure::Entity {
+            time: l.time,
+            installation_id: installation.id,
+            level: Some(l.mesure),
+            flow: None,
+        });
 
         for mesure in mesures {
             elephantry.upsert_one::<mesure::Model>(&mesure, "", "nothing")?;
@@ -52,21 +46,19 @@ async fn main() -> Result {
 
         let flow = vigicrues::flow(&installation.station).await?;
 
-        let mesures = flow
-            .serie
-            .mesures
-            .iter()
-            .map(|f| {
-                mesure::Entity {
-                    time: f.time,
-                    installation_id: installation.id,
-                    level: None,
-                    flow: Some(f.mesure),
-                }
-            });
+        let mesures = flow.serie.mesures.iter().map(|f| mesure::Entity {
+            time: f.time,
+            installation_id: installation.id,
+            level: None,
+            flow: Some(f.mesure),
+        });
 
         for mesure in mesures {
-            elephantry.upsert_one::<mesure::Model>(&mesure, "(\"time\", installation_id)", "update set flow = excluded.flow")?;
+            elephantry.upsert_one::<mesure::Model>(
+                &mesure,
+                "(\"time\", installation_id)",
+                "update set flow = excluded.flow",
+            )?;
         }
     }
 
