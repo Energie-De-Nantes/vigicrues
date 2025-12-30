@@ -17,7 +17,7 @@ default-features = false
 features = ["clock", "serde"]
 
 [dependencies.reqwest]
-version = "0.12"
+version = "0.13"
 features = ["json"]
 
 [dependencies.serde]
