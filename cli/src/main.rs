@@ -4,7 +4,7 @@ mod mesure {
     #[derive(Debug, elephantry::Entity)]
     #[elephantry(model = "Model", structure = "Structure", relation = "vigicrues")]
     pub struct Entity {
-        pub time: chrono::DateTime<chrono::offset::Local>,
+        pub time: jiff::civil::DateTime,
         pub installation_id: i32,
         pub level: Option<f32>,
         pub flow: Option<f32>,

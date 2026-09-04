@@ -46,7 +46,7 @@ pub struct Serie {
 #[serde(rename_all = "PascalCase")]
 pub struct Mesure {
     #[serde(rename = "DtObsHydro")]
-    pub time: chrono::DateTime<chrono::offset::Local>,
+    pub time: jiff::civil::DateTime,
     #[serde(rename = "ResObsHydro")]
     pub mesure: f32,
 }

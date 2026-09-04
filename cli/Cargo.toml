@@ -5,7 +5,7 @@ edition.workspace = true
 license = "MIT"
 
 [dependencies]
-chrono.workspace = true
+jiff.workspace = true
 
 [dev-dependencies]
 tokio.workspace = true
@@ -15,8 +15,8 @@ version = "1.0"
 default-features = false
 
 [dependencies.elephantry]
-version = "4.0"
-features = ["date"]
+version = "5.0"
+features = ["jiff"]
 
 [dependencies.vigicrues]
 version = "0.1"
