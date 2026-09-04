@@ -1,6 +1,7 @@
 pub type Result<T = ()> = std::result::Result<T, reqwest::Error>;
 
 #[derive(Default, Debug, Clone, Copy, Eq, PartialEq, serde::Deserialize)]
+#[cfg_attr(test, serde(deny_unknown_fields))]
 pub enum Scale {
     #[default]
     #[serde(rename = "H")]
@@ -21,6 +22,7 @@ impl std::fmt::Display for Scale {
 }
 
 #[derive(Debug, Clone, serde::Deserialize)]
+#[cfg_attr(test, serde(deny_unknown_fields))]
 #[serde(rename_all = "PascalCase")]
 pub struct Data {
     #[serde(rename = "VersionFlux")]
@@ -29,6 +31,7 @@ pub struct Data {
 }
 
 #[derive(Debug, Clone, serde::Deserialize)]
+#[cfg_attr(test, serde(deny_unknown_fields))]
 #[serde(rename_all = "PascalCase")]
 pub struct Serie {
     #[serde(rename = "CdStationHydro")]
@@ -43,6 +46,7 @@ pub struct Serie {
 }
 
 #[derive(Debug, Clone, serde::Deserialize)]
+#[cfg_attr(test, serde(deny_unknown_fields))]
 #[serde(rename_all = "PascalCase")]
 pub struct Mesure {
     #[serde(rename = "DtObsHydro")]
