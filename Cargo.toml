@@ -1,6 +1,14 @@
 [workspace]
 members = [".", "cli"]
 
+[workspace.dependencies.chrono]
+version = "0.4"
+default-features = false
+
+[workspace.dependencies.tokio]
+version = "1.26"
+features = ["macros", "rt-multi-thread"]
+
 [workspace.package]
 edition = "2024"
 
@@ -12,8 +20,7 @@ license = "MIT"
 description = "Retrieve vigicrues.fr informations"
 
 [dependencies.chrono]
-version = "0.4"
-default-features = false
+workspace = true
 features = ["clock", "serde"]
 
 [dependencies.reqwest]
@@ -24,6 +31,5 @@ features = ["json"]
 version = "1.0"
 features = ["derive"]
 
-[dev-dependencies.tokio]
-version = "1.26"
-features = ["macros", "rt-multi-thread"]
+[dev-dependencies]
+tokio.workspace = true
