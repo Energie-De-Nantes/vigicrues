@@ -2,7 +2,7 @@
 members = [".", "cli"]
 
 [workspace.dependencies.jiff]
-version = "0.2"
+version = "1.0"
 default-features = false
 
 [workspace.dependencies.tokio]
